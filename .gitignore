@@ -1,4 +1,5 @@
 # no subir al repo: entornos virtuales, media, key, debugs, base de datos
 env
 db.sqlite3
-settings
+local.py
+media
