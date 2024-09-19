@@ -99,3 +99,11 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# mi usuario modificado
+AUTH_USER_MODEL = "posts.User"
+
+# ruta archivos media
+
+MEDIA_URL = "/media/"
