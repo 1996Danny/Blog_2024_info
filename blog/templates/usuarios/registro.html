@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <li>
+            <a href="{% url  'noticias' %}">Noticias</a>
+
+        </li>
+        <li>
+            <a href="{% url  'registro' %}">Registro</a>
+        </li>
+        <li>
+            <a href="{% url  'about' %}">About</a>
+        </li>
+        <li>
+            <a href=""></a>
+        </li>
+    </div>
+    <h1>Registro de Usuarios</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit"> Enviar</button>
+    </form>
+
+</body>
+
+</html>
