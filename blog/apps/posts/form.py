@@ -8,12 +8,8 @@ class RegistroForm(UserCreationForm):
     email = forms.EmailField(max_length=200, help_text="Required")
     password1 = forms.CharField(widget=forms.PasswordInput, required=True)
     password2 = forms.CharField(widget=forms.PasswordInput, required=True)
+    icono = forms.ImageField(label="imagen de perfil", required=False)
 
     class Meta:
         model = User
-        fields = [
-            "username",
-            "email",
-            "password1",
-            "password2",
-        ]
+        fields = ["username", "email", "password1", "password2", "icono"]

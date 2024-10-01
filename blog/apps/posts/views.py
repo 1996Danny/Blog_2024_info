@@ -7,8 +7,15 @@ def posts(request):
     ctx = {}  # contextos
     noticias = Posts.objects.all()  # select * from Posts
     ctx["noticias"] = noticias
-    print(noticias)
+
     return render(request, "posts/posts.html", ctx)
+
+
+def post_id(request, id):
+    ctx = {}
+    noticia = Posts.objects.get(id=id)
+    ctx["noticia"] = noticia
+    return render(request, "posts/detalle.html", ctx)
 
 
 def about_us(request):
@@ -20,10 +27,10 @@ def about_us(request):
 from .form import RegistroForm
 from django.views.generic import CreateView
 
-# from django.urls import reverse_lazy
+from django.urls import reverse_lazy
 
 
 class Registro(CreateView):
     form_class = RegistroForm
-    # success_url = reverse_lazy("noticia")
+    success_url = reverse_lazy("noticias")
     template_name = "usuarios/registro.html"
