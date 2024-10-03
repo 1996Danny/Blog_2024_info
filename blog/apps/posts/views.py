@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Posts
+from .models import Posts, User
 
 
 # vista basada en funciones
@@ -20,6 +20,13 @@ def post_id(request, id):
 
 def about_us(request):
     return render(request, "posts/about_us.html")
+
+
+def perfil(request):
+    ctx = {}
+    usuarios = User.objects.all()
+    ctx["usuarios"] = usuarios
+    return render(request, "usuarios/perfil.html", ctx)
 
 
 # vista basada en clase

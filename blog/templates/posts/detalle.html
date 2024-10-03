@@ -1,4 +1,5 @@
-<div>
+{% extends 'base.html' %}
+<!-- <div>
     <ul class="navbar-nav">
 
         <li class="nav-item">
@@ -27,9 +28,14 @@
         </li>
     </ul>
 
-</div>
+</div> -->
+
+
+{% block titulo %} Noticias detalle {% endblock titulo %}
+{% block contenido %}
 <h1>Detalle</h1>
 <h1>{{noticia}}</h1>
-<img src="{{ noticia.imagen.url }}" style="height: 200px;">
+<img class="img-detalle" src="{{ noticia.imagen.url }}" style="height: 200px;">
 <p>{{noticia.contenido}}</p>
 <p>{{notica.fecha_publicacion}}</p>
+{% endblock contenido %}

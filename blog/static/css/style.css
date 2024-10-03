@@ -1,0 +1,31 @@
+body {
+    background-color: black;
+    color: white;
+    margin: 8%;
+    padding: 2%;
+}
+
+header {
+    color: white;
+    padding: 15px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.logo {
+    width: 120px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.img-detalle {
+    margin: 15%;
+}
+
+.img-perfil {
+    width: 200px;
+}
