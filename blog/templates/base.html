@@ -28,20 +28,23 @@
 
 
 
-                    <li> <a href="{% url 'registro' %}">Registro</a> </li>
+
 
                     <li> <a href="{% url 'about' %}">Sobre nosotros</a> </li>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'perfil' %}">
-                        <li> {{user.username}} <img src="{{user.icono.url}}" alt="" width="50px"></li>
+                    <a href="{% url 'perfil' user.id %}">
+                        <li> {{user.username}} {% if usuarios.icono != Null %}<img src="{{user.icono.url}}" alt=""
+                                width="50px">
+                            {% endif %}
+                        </li>
                     </a>
-
                     <form action="{% url 'logout' %}" method="post">
                         {%csrf_token%}
-                        {{form}}
-                        <button type="sumit">salir</button>
+
+                        <button type="sumit">Cerrar sesión</button>
                     </form>
                     {% else %}
+                    <li> <a href="{% url 'registro' %}">Registro</a> </li>
                     <li> <a href="{% url 'login' %}">Inicio de sesión</a> </li>
                     {% endif %}
                 </ul>

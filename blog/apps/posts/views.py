@@ -22,17 +22,18 @@ def about_us(request):
     return render(request, "posts/about_us.html")
 
 
-def perfil(request):
+def perfil(request, id):
     ctx = {}
-    usuarios = User.objects.all()
+    usuarios = User.objects.get(id=id)
     ctx["usuarios"] = usuarios
+    print(usuarios)
     return render(request, "usuarios/perfil.html", ctx)
 
 
 # vista basada en clase
 
-from .form import RegistroForm
-from django.views.generic import CreateView
+from .form import RegistroForm, CrearForm
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 from django.urls import reverse_lazy
 
@@ -41,3 +42,15 @@ class Registro(CreateView):
     form_class = RegistroForm
     success_url = reverse_lazy("noticias")
     template_name = "usuarios/registro.html"
+
+
+class CrearPost(CreateView):
+    form_class = CrearForm
+    model = Posts
+    template_name = "posts/crear_post.html"
+    success_url = reverse_lazy("noticias")
+
+
+class EliminarPost(DeleteView):
+    model = Posts
+    success_url = reverse_lazy("noticias")

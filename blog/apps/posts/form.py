@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from .models import User, Posts
 
 
 class RegistroForm(UserCreationForm):
@@ -19,3 +19,11 @@ class RegistroForm(UserCreationForm):
             "password2",
             "icono",
         ]
+
+
+class CrearForm(forms.ModelForm):
+
+    class Meta:
+        model = Posts
+        fields = "__all__"
+
