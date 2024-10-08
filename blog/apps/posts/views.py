@@ -5,7 +5,7 @@ from .models import Posts, User
 # vista basada en funciones
 def posts(request):
     ctx = {}  # contextos
-    noticias = Posts.objects.all()  # select * from Posts
+    noticias = Posts.objects.all().order_by("-id")  # select * from Posts
     ctx["noticias"] = noticias
 
     return render(request, "posts/posts.html", ctx)
@@ -32,7 +32,7 @@ def perfil(request, id):
 
 # vista basada en clase
 
-from .form import RegistroForm, CrearForm
+from .form import RegistroForm, CrearForm, ModificarForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 
 from django.urls import reverse_lazy
@@ -50,7 +50,18 @@ class CrearPost(CreateView):
     template_name = "posts/crear_post.html"
     success_url = reverse_lazy("noticias")
 
+    def form_valid(self, form):
+        form.instance.autor = self.request.user
+        return super().form_valid(form)
+
 
 class EliminarPost(DeleteView):
     model = Posts
+    success_url = reverse_lazy("noticias")
+
+
+class ModificarPost(UpdateView):
+    model = Posts
+    form_class = ModificarForm
+    template_name = "posts/modificar_post.html"
     success_url = reverse_lazy("noticias")

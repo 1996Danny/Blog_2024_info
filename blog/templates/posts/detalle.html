@@ -33,9 +33,15 @@
 
 {% block titulo %} Noticias detalle {% endblock titulo %}
 {% block contenido %}
-<h1>Detalle</h1>
+
+<a href="{% url 'modificar_post' noticia.pk %}">Modificar</a>
 <h1>{{noticia}}</h1>
 <img class="img-detalle" src="{{ noticia.imagen.url }}" style="height: 200px;">
 <p>{{noticia.contenido}}</p>
-<p>{{notica.fecha_publicacion}}</p>
+<p>Fecha: {{noticia.fecha_publicacion}}</p>
+<p>Categoria: {{noticia.categoria}}</p>
+
+<p><img width="20px"
+        src="https://th.bing.com/th/id/R.0ababdb27dd0bb71f21f03c98b6cd6f1?rik=%2fiVDxahrgNztPA&pid=ImgRaw&r=0" alt="">
+    {{noticia.autor}}</p>
 {% endblock contenido %}
