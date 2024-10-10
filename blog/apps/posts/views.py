@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Posts, User
+from django.shortcuts import render, redirect
+from .models import Posts, User, Comentarios
 
 
 # vista basada en funciones
@@ -14,7 +14,9 @@ def posts(request):
 def post_id(request, id):
     ctx = {}
     noticia = Posts.objects.get(id=id)
+    comentarios = Comentarios.objects.filter(post=noticia)
     ctx["noticia"] = noticia
+    ctx["comentarios"] = comentarios
     return render(request, "posts/detalle.html", ctx)
 
 
@@ -65,3 +67,17 @@ class ModificarPost(UpdateView):
     form_class = ModificarForm
     template_name = "posts/modificar_post.html"
     success_url = reverse_lazy("noticias")
+
+
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def comentar_post(request):
+    comentario = request.POST.get("comentario", None)
+    user = request.user
+    post = request.POST.get("id_noticia", None)
+    get_post = Posts.objects.get(pk=post)
+    coment = Comentarios.objects.create(autor=user, contenido=comentario, post=get_post)
+
+    return redirect(reverse_lazy("detalle", kwargs={"id": post}))

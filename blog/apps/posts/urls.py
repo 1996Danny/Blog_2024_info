@@ -15,4 +15,6 @@ urlpatterns = [
     path("modificar/<int:pk>", views.ModificarPost.as_view(), name="modificar_post"),
     # perfil del usuario
     path("perfil/<int:id>", views.perfil, name="perfil"),
+    # url de comentario
+    path("comentar/", views.comentar_post, name="comentar"),
 ]

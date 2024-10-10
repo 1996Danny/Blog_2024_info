@@ -18,6 +18,7 @@
 <img src="{{ noticia.imagen.url }}" style="height: 200px;">
 <p>{{ noticia.contenido | truncatechars:45}} <a href="{% url 'detalle' noticia.id %}">ver más...</a></p>
 <p>{{ noticia.fecha_publicacion }}</p>
+<p>{{noticia.categoria}}</p>
 {% if user.id == noticia.autor_id %}
 <a href="{% url 'eliminar_post' noticia.pk %}"><button type="submit">Eliminar</button></a>
 {%endif%}
