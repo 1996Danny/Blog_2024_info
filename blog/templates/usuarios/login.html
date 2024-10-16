@@ -2,16 +2,19 @@
 
 {% block titulo %}Inicio de sesión{% endblock titulo %}
 {% block contenido %}
-<div>
-    <h1>Inicio de sesión</h1>
-    <div>
-        <form action="" method="post">
-            {% csrf_token %}
 
-            {{ form.as_p }}
+<h1>Inicio de sesión</h1>
 
-            <input type="submit">
-        </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary "> Iniciar sesión</button>
+            </form>
+
+        </div>
     </div>
 </div>
 {% endblock contenido %}

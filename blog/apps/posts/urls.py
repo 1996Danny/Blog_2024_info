@@ -3,7 +3,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.posts, name="noticias"),
+    # vbf
+    # path("", views.posts, name="noticias"),
+    # vbc
+    path("", views.Noticias.as_view(), name="noticias"),
     path("about/", views.about_us, name="about"),
     path("registro/", views.Registro.as_view(), name="registro"),
     path("detalle/<int:id>", views.post_id, name="detalle"),
@@ -17,4 +20,12 @@ urlpatterns = [
     path("perfil/<int:id>", views.perfil, name="perfil"),
     # url de comentario
     path("comentar/", views.comentar_post, name="comentar"),
+    path(
+        "borrar/<int:pk>", views.EliminarComentario.as_view(), name="borrar_comentario"
+    ),
+    path(
+        "modificar_com/<int:pk>",
+        views.ModificarComentario.as_view(),
+        name="modificar_comentario",
+    ),
 ]

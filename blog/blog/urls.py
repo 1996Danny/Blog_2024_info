@@ -22,7 +22,9 @@ from .views import index
 from django.conf import settings
 from django.conf.urls.static import static
 
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
+
+from apps.posts.views import CustomLoginView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -31,8 +33,9 @@ urlpatterns = [
     path("posts/", include("apps.posts.urls")),
     # otras aplicaciones
     path(
-        "login/", LoginView.as_view(template_name="usuarios/login.html"), name="login"
+        "login/",
+        CustomLoginView.as_view(template_name="usuarios/login.html"),
+        name="login",
     ),
     path("logout/", LogoutView.as_view(), name="logout"),
-    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

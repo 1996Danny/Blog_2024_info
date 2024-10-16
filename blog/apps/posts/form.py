@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User, Posts, Comentarios
 
 
@@ -61,13 +61,41 @@ class ModificarForm(forms.ModelForm):
         fields = ("contenido",)
 
 
-
 # Formulario Comentarios
+
 
 class ComentarioForm(forms.ModelForm):
 
     class Meta:
         model = Comentarios
-        fields = ["contenido",]
+        fields = [
+            "contenido",
+        ]
 
-        
+
+class ModificarComentarioForm(forms.ModelForm):
+
+    class Meta:
+        model = Comentarios
+        fields = [
+            "contenido",
+        ]
+
+
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Nombre de usuario"},
+        ),
+    )
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "Ingrese la contraseña"}
+        ),
+        required=True,
+    )
+
+    class Meta:
+        model = User
+        fileds = ["username", "password"]

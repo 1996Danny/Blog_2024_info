@@ -8,16 +8,31 @@
     <a href="{% url 'nuevo_post' %}"><button>Nuevo Post</button></a>
     <hr>
     {% endif %}
+    <div> <a href="?ordenar=fecha"><button>Ordenar por fecha</button></a>
+        <a href="?ordenar=alfabetico"><button>Ordenar alfabeticamente</button></a>
+    </div>
+    <div>
+        <a href="{% url 'noticias' %}">Todas</a>
+        {% for categoria in categorias %}
+
+        <a href="?categoria={{categoria.nombre}}"> {{categoria.nombre}}</a>
+
+        {% endfor %}
+    </div>
+    <hr>
 </section>
 
 
 <h1>Noticias</h1>
 
-{% for noticia in noticias %}
+{% for noticia in object_list %}
 <h2>{{ noticia.titulo }}</h2>
 <img src="{{ noticia.imagen.url }}" style="height: 200px;">
 <p>{{ noticia.contenido | truncatechars:45}} <a href="{% url 'detalle' noticia.id %}">ver más...</a></p>
 <p>{{ noticia.fecha_publicacion }}</p>
+
+<a href="?autor={{noticia.autor}}"><small>{{noticia.autor}}</small></a>
+
 <p>{{noticia.categoria}}</p>
 {% if user.id == noticia.autor_id %}
 <a href="{% url 'eliminar_post' noticia.pk %}"><button type="submit">Eliminar</button></a>

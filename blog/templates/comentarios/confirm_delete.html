@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block contenido%}
+desea eliminar {{object}}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit">
+</form>
+{% endblock contenido%}

@@ -34,7 +34,7 @@
 {% block titulo %} Noticias detalle {% endblock titulo %}
 {% block contenido %}
 
-<a href="{% url 'modificar_post' noticia.pk %}">Modificar</a>
+<a class="btn btn-warning" href="{% url 'modificar_post' noticia.pk %}">Modificar</a>
 <h1>{{noticia}}</h1>
 <img class="img-detalle" src="{{ noticia.imagen.url }}" style="height: 200px;">
 <p>{{noticia.contenido}}</p>
@@ -65,6 +65,8 @@
             <h5 class="card-title"> {{comentario.autor}}</h5>
             <p class="card-text">{{comentario.contenido}}</p>
         </div>
+        <a class="btn btn-danger" href="{% url 'borrar_comentario' comentario.pk %}">Eliminar</a>
+        <a class="btn btn-warning" href="{% url 'modificar_comentario' comentario.pk %}">Modificar</a>
     </div>
 
     {% endfor %}

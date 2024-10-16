@@ -33,8 +33,9 @@
                     <li> <a href="{% url 'about' %}">Sobre nosotros</a> </li>
                     {% if user.is_authenticated %}
                     <a href="{% url 'perfil' user.id %}">
-                        <li> {{user.username}} {% if usuarios.icono != Null %}<img src="{{user.icono.url}}" alt=""
-                                width="50px">
+                        <li> {{user.username}}
+                            {% if usuarios.icono != Null %}
+                            <img src="{{user.icono.url}}" alt="" width="50px">
                             {% endif %}
                         </li>
                     </a>
